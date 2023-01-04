@@ -9,7 +9,7 @@ import scrapy
 
 class findlinks(scrapy.Spider):
     name = "findlinks"
-    pages = 85
+    pages = 89
     start_urls = []
 
     for i in range(85):
