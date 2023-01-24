@@ -13,7 +13,7 @@ from scrapy.utils.log import configure_logging
 
 class company_data(scrapy.Spider):
     name = "companydata"
-    filename = "urls.csv"
+    filename = "newlink.csv"
     start_urls = []
 
     configure_logging(install_root_handler=False)

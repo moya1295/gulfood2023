@@ -9,10 +9,10 @@ import scrapy
 
 class findlinks(scrapy.Spider):
     name = "findlinks"
-    pages = 109
+    pages = 147
     start_urls = []
 
-    for i in range(85):
+    for i in range(pages):
         start_urls.append("https://www.gulfood.com/exhibitors?page="+str(i))
 
     def parse(self, response, **kwargs):
