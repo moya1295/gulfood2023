@@ -4,9 +4,23 @@
 # https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
+import random
+from .settings import USERAGENT
 
 # useful for handling different item types with a single interface
 from itemadapter import is_item, ItemAdapter
+
+# Middlewhere to show which what useragents are being used in each request
+class ShowRequestHeadersMiddleware:
+    def process_request(self, request, spider):
+        print (f"Request Headers: {request.headers}")
+
+# Middleware to rotate user agents for each request
+class RotateUserAgentMiddleware:
+    def process_request(self, request, spider):
+        user_agent = random.choice(USERAGENT)
+        request.headers['User-Agent'] = user_agent
+
 
 
 class GulfoodSpiderMiddleware:
