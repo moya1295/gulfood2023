@@ -10,10 +10,11 @@ import csv
 import re
 import logging
 from scrapy.utils.log import configure_logging
+from gulfood.items import GulfoodItem
 
 class company_data(scrapy.Spider):
     name = "companydata"
-    filename = "newlink.csv"
+    filename = "test_url.csv"
     start_urls = []
 
     configure_logging(install_root_handler=False)
@@ -27,6 +28,7 @@ class company_data(scrapy.Spider):
 
     def parse(self, response, **kwargs):
         
+        item = GulfoodItem()
 
         company_name = response.css("div.m-exhibitor-entry__item__header__wrapper h1::text").get()
         if company_name != None:
@@ -69,18 +71,18 @@ class company_data(scrapy.Spider):
             elif re.search("twitter",url) != None:
                 twitter = url
 
-        yield {
-            "Name" : company_name,
-            "Stand" : stand_position,
-            "Address" : final_address,
-            "Website" : company_website,
-            "Facebook" : facebook,
-            "Instagram" : instagram,
-            "Youtube" : youtube,
-            "LinkedIn": linkedin,
-            "Twitter" : twitter,
-            "Description": company_desc
-        }
+        item['name'] = company_name
+        item['stand'] = stand_position
+        item['address'] = final_address
+        item['website'] = company_website
+        item['facebook'] = facebook
+        item['instagram'] = instagram
+        item['youtube'] = youtube
+        item['linkedin'] = linkedin
+        item['twitter'] = twitter
+        item['description'] = company_desc
+
+        yield item
 
 
 
