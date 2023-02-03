@@ -14,7 +14,7 @@ from gulfood.items import GulfoodItem
 
 class company_data(scrapy.Spider):
     name = "companydata"
-    filename = "test_url.csv"
+    filename = 'test_url.csv'
     start_urls = []
 
     configure_logging(install_root_handler=False)
